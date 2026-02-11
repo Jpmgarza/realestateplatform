@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     'apps.referrals',
     'apps.business',
     'apps.analytics',
+    'apps.reservations',
+    'apps.messaging',
 ]
 
 MIDDLEWARE = [
@@ -155,6 +157,11 @@ CORS_ALLOW_CREDENTIALS = True
 # API Documentation
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Plateforme Immobilière API',
-    'DESCRIPTION': 'API REST pour la plateforme immobilière - Phase 0',
-    'VERSION': '0.1.0',
+    'DESCRIPTION': 'API REST pour la plateforme immobilière',
+    'VERSION': '1.0.0',
 }
+
+# Stripe
+STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY', default='')
+STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY', default='')
+STRIPE_WEBHOOK_SECRET = config('STRIPE_WEBHOOK_SECRET', default='')

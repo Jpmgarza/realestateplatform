@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import { useState } from 'react'
-import { Home, Search, PlusCircle, User, LogOut, Heart, Newspaper, Building2, Handshake, BarChart3, ChevronDown } from 'lucide-react'
+import { Home, Search, PlusCircle, User, LogOut, Heart, Newspaper, Building2, Handshake, BarChart3, ChevronDown, Calendar, MessageSquare } from 'lucide-react'
 
 export default function Navbar() {
   const { user, logout } = useAuth()
@@ -71,6 +71,9 @@ export default function Navbar() {
                         <Link to="/analytics" onClick={() => setMenuOpen(false)} className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50">
                           <BarChart3 className="w-4 h-4" /> Statistiques
                         </Link>
+                        <Link to="/reservations" onClick={() => setMenuOpen(false)} className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50">
+                          <Calendar className="w-4 h-4" /> Réservations
+                        </Link>
                         <Link to="/properties/new" onClick={() => setMenuOpen(false)} className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50">
                           <PlusCircle className="w-4 h-4" /> Publier un bien
                         </Link>
@@ -79,6 +82,9 @@ export default function Navbar() {
                   )}
                 </div>
 
+                <Link to="/messages" className="p-2 text-gray-500 hover:text-primary-600 transition-colors" title="Messages">
+                  <MessageSquare className="w-5 h-5" />
+                </Link>
                 <Link to="/dashboard?tab=favorites" className="p-2 text-gray-500 hover:text-red-500 transition-colors">
                   <Heart className="w-5 h-5" />
                 </Link>

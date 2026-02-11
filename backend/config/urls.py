@@ -13,6 +13,8 @@ urlpatterns = [
     path('api/referrals/', include('apps.referrals.urls')),
     path('api/business/', include('apps.business.urls')),
     path('api/analytics/', include('apps.analytics.urls')),
+    path('api/reservations/', include('apps.reservations.urls')),
+    path('api/messaging/', include('apps.messaging.urls')),
 
     # Documentation API (accessible sur /api/docs/)
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),

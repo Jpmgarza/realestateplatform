@@ -15,6 +15,8 @@ import BusinessList from './pages/BusinessList'
 import BusinessDetail from './pages/BusinessDetail'
 import BusinessCreate from './pages/BusinessCreate'
 import Analytics from './pages/Analytics'
+import MyReservations from './pages/MyReservations'
+import Messages from './pages/Messages'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -48,6 +50,8 @@ function App() {
                 <Route path="/business/create" element={<BusinessCreate />} />
                 <Route path="/business/:businessId" element={<BusinessDetail />} />
                 <Route path="/analytics" element={<Analytics />} />
+                <Route path="/reservations" element={<MyReservations />} />
+                <Route path="/messages" element={<Messages />} />
               </Routes>
             </main>
           </div>
