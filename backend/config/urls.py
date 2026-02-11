@@ -10,6 +10,9 @@ urlpatterns = [
     path('api/properties/', include('apps.properties.urls')),
     path('api/favorites/', include('apps.favorites.urls')),
     path('api/social/', include('apps.social.urls')),
+    path('api/referrals/', include('apps.referrals.urls')),
+    path('api/business/', include('apps.business.urls')),
+    path('api/analytics/', include('apps.analytics.urls')),
 
     # Documentation API (accessible sur /api/docs/)
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),

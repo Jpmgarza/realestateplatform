@@ -1,10 +1,12 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import { Home, Search, PlusCircle, User, LogOut, Heart, Newspaper } from 'lucide-react'
+import { useState } from 'react'
+import { Home, Search, PlusCircle, User, LogOut, Heart, Newspaper, Building2, Handshake, BarChart3, ChevronDown } from 'lucide-react'
 
 export default function Navbar() {
   const { user, logout } = useAuth()
   const navigate = useNavigate()
+  const [menuOpen, setMenuOpen] = useState(false)
 
   const handleLogout = () => {
     logout()
@@ -37,23 +39,46 @@ export default function Navbar() {
           </div>
 
           {/* Right section */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
+            {/* Links visibles par tous */}
+            <Link to="/feed" className="hidden sm:flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-primary-600 transition-colors px-2">
+              <Newspaper className="w-4 h-4" />
+              Feed
+            </Link>
+            <Link to="/business" className="hidden sm:flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-primary-600 transition-colors px-2">
+              <Building2 className="w-4 h-4" />
+              Annuaire
+            </Link>
+
             {user ? (
               <>
-                <Link
-                  to="/feed"
-                  className="hidden sm:flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-primary-600 transition-colors"
-                >
-                  <Newspaper className="w-4 h-4" />
-                  Feed
-                </Link>
-                <Link
-                  to="/properties/new"
-                  className="hidden sm:flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-primary-600 transition-colors"
-                >
-                  <PlusCircle className="w-4 h-4" />
-                  Publier
-                </Link>
+                {/* Menu Plus */}
+                <div className="relative">
+                  <button
+                    onClick={() => setMenuOpen(!menuOpen)}
+                    className="hidden sm:flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-primary-600 transition-colors px-2"
+                  >
+                    Plus
+                    <ChevronDown className="w-3 h-3" />
+                  </button>
+                  {menuOpen && (
+                    <>
+                      <div className="fixed inset-0 z-40" onClick={() => setMenuOpen(false)} />
+                      <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-1 z-50">
+                        <Link to="/referrals" onClick={() => setMenuOpen(false)} className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50">
+                          <Handshake className="w-4 h-4" /> Referrals
+                        </Link>
+                        <Link to="/analytics" onClick={() => setMenuOpen(false)} className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50">
+                          <BarChart3 className="w-4 h-4" /> Statistiques
+                        </Link>
+                        <Link to="/properties/new" onClick={() => setMenuOpen(false)} className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50">
+                          <PlusCircle className="w-4 h-4" /> Publier un bien
+                        </Link>
+                      </div>
+                    </>
+                  )}
+                </div>
+
                 <Link to="/dashboard?tab=favorites" className="p-2 text-gray-500 hover:text-red-500 transition-colors">
                   <Heart className="w-5 h-5" />
                 </Link>
@@ -70,9 +95,6 @@ export default function Navbar() {
               </>
             ) : (
               <>
-                <Link to="/feed" className="text-sm font-medium text-gray-700 hover:text-primary-600">
-                  Feed
-                </Link>
                 <Link to="/login" className="text-sm font-medium text-gray-700 hover:text-primary-600">
                   Connexion
                 </Link>

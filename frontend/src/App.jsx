@@ -10,6 +10,11 @@ import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import Feed from './pages/Feed'
 import UserProfile from './pages/UserProfile'
+import Referrals from './pages/Referrals'
+import BusinessList from './pages/BusinessList'
+import BusinessDetail from './pages/BusinessDetail'
+import BusinessCreate from './pages/BusinessCreate'
+import Analytics from './pages/Analytics'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -38,6 +43,11 @@ function App() {
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/feed" element={<Feed />} />
                 <Route path="/profile/:userId" element={<UserProfile />} />
+                <Route path="/referrals" element={<Referrals />} />
+                <Route path="/business" element={<BusinessList />} />
+                <Route path="/business/create" element={<BusinessCreate />} />
+                <Route path="/business/:businessId" element={<BusinessDetail />} />
+                <Route path="/analytics" element={<Analytics />} />
               </Routes>
             </main>
           </div>
