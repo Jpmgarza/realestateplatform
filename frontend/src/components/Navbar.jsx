@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import { Home, Search, PlusCircle, User, LogOut, Heart } from 'lucide-react'
+import { Home, Search, PlusCircle, User, LogOut, Heart, Newspaper } from 'lucide-react'
 
 export default function Navbar() {
   const { user, logout } = useAuth()
@@ -41,6 +41,13 @@ export default function Navbar() {
             {user ? (
               <>
                 <Link
+                  to="/feed"
+                  className="hidden sm:flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-primary-600 transition-colors"
+                >
+                  <Newspaper className="w-4 h-4" />
+                  Feed
+                </Link>
+                <Link
                   to="/properties/new"
                   className="hidden sm:flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-primary-600 transition-colors"
                 >
@@ -63,6 +70,9 @@ export default function Navbar() {
               </>
             ) : (
               <>
+                <Link to="/feed" className="text-sm font-medium text-gray-700 hover:text-primary-600">
+                  Feed
+                </Link>
                 <Link to="/login" className="text-sm font-medium text-gray-700 hover:text-primary-600">
                   Connexion
                 </Link>

@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'apps.users',
     'apps.properties',
     'apps.favorites',
+    'apps.social',
 ]
 
 MIDDLEWARE = [

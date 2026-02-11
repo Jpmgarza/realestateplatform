@@ -8,6 +8,8 @@ import PropertyDetail from './pages/PropertyDetail'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
+import Feed from './pages/Feed'
+import UserProfile from './pages/UserProfile'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,6 +36,8 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/feed" element={<Feed />} />
+                <Route path="/profile/:userId" element={<UserProfile />} />
               </Routes>
             </main>
           </div>
