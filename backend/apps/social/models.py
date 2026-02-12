@@ -4,6 +4,18 @@ from django.contrib.auth.models import User
 
 
 class Post(models.Model):
+    STATUS_CHOICES = [
+        ('published', 'Publié'),
+        ('draft', 'Brouillon'),
+        ('scheduled', 'Programmé'),
+    ]
+    MEDIA_TYPE_CHOICES = [
+        ('text', 'Texte'),
+        ('image', 'Image'),
+        ('video', 'Vidéo'),
+        ('carousel', 'Carrousel'),
+    ]
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
     content = models.TextField(max_length=2000, blank=True)
@@ -11,6 +23,10 @@ class Post(models.Model):
         'properties.Property', on_delete=models.SET_NULL,
         null=True, blank=True, related_name='posts'
     )
+    video = models.FileField(upload_to='posts/videos/', null=True, blank=True)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='published')
+    media_type = models.CharField(max_length=10, choices=MEDIA_TYPE_CHOICES, default='text')
+    scheduled_at = models.DateTimeField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

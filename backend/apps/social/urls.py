@@ -6,10 +6,19 @@ urlpatterns = [
     path('feed/', views.FeedView.as_view(), name='feed'),
     path('feed/global/', views.GlobalFeedView.as_view(), name='global-feed'),
 
-    # Posts
+    # Posts CRUD
     path('posts/', views.PostCreateView.as_view(), name='post-create'),
     path('posts/<uuid:pk>/', views.PostDetailView.as_view(), name='post-detail'),
+    path('posts/<uuid:pk>/edit/', views.PostUpdateView.as_view(), name='post-update'),
+    path('posts/<uuid:post_id>/publish/', views.publish_post, name='post-publish'),
     path('users/<int:user_id>/posts/', views.UserPostsView.as_view(), name='user-posts'),
+
+    # Drafts
+    path('drafts/', views.DraftListView.as_view(), name='draft-list'),
+    path('drafts/<uuid:pk>/', views.DraftDeleteView.as_view(), name='draft-delete'),
+
+    # Scheduled
+    path('scheduled/', views.ScheduledListView.as_view(), name='scheduled-list'),
 
     # Likes
     path('posts/<uuid:post_id>/like/', views.toggle_like, name='toggle-like'),

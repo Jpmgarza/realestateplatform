@@ -37,7 +37,8 @@ class PostSerializer(serializers.ModelSerializer):
         model = Post
         fields = [
             'id', 'author', 'author_username', 'author_avatar', 'author_full_name',
-            'content', 'linked_property', 'images', 'likes_count', 'comments_count',
+            'content', 'linked_property', 'video', 'status', 'media_type',
+            'scheduled_at', 'images', 'likes_count', 'comments_count',
             'is_liked', 'comments', 'created_at',
         ]
         read_only_fields = ['author']
@@ -64,7 +65,7 @@ class PostSerializer(serializers.ModelSerializer):
 class PostCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ['content', 'linked_property']
+        fields = ['content', 'linked_property', 'status', 'media_type', 'scheduled_at']
 
     def create(self, validated_data):
         validated_data['author'] = self.context['request'].user
@@ -104,7 +105,7 @@ class UserProfileSocialSerializer(serializers.ModelSerializer):
         return obj.following.count()
 
     def get_posts_count(self, obj):
-        return obj.posts.count()
+        return obj.posts.filter(status='published').count()
 
     def get_is_following(self, obj):
         request = self.context.get('request')

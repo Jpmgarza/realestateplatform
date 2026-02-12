@@ -17,6 +17,9 @@ import BusinessCreate from './pages/BusinessCreate'
 import Analytics from './pages/Analytics'
 import MyReservations from './pages/MyReservations'
 import Messages from './pages/Messages'
+import PropertyCreate from './pages/PropertyCreate'
+import Drafts from './pages/Drafts'
+import Scheduled from './pages/Scheduled'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -39,6 +42,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/properties" element={<PropertyList />} />
+                <Route path="/properties/new" element={<PropertyCreate />} />
                 <Route path="/properties/:id" element={<PropertyDetail />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
@@ -52,6 +56,8 @@ function App() {
                 <Route path="/analytics" element={<Analytics />} />
                 <Route path="/reservations" element={<MyReservations />} />
                 <Route path="/messages" element={<Messages />} />
+                <Route path="/drafts" element={<Drafts />} />
+                <Route path="/scheduled" element={<Scheduled />} />
               </Routes>
             </main>
           </div>

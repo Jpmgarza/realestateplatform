@@ -25,3 +25,34 @@
     @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all;
   }
 }
+
+/* Heart burst animation for double-tap like */
+@keyframes heart-burst {
+  0% { transform: scale(0); opacity: 0; }
+  15% { transform: scale(1.2); opacity: 1; }
+  30% { transform: scale(0.95); opacity: 1; }
+  45% { transform: scale(1.05); opacity: 1; }
+  80% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+.animate-heart-burst {
+  animation: heart-burst 0.8s ease-out forwards;
+}
+
+/* Swiper carousel custom styles */
+.feed-carousel .swiper-pagination-bullet {
+  background: white;
+  opacity: 0.5;
+  width: 6px;
+  height: 6px;
+}
+
+.feed-carousel .swiper-pagination-bullet-active {
+  background: white;
+  opacity: 1;
+}
+
+.feed-carousel .swiper-pagination {
+  bottom: 12px !important;
+}
